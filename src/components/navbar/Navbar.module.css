@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0.8em;
+  box-shadow: 2px 2px 8px var(--box-shadow-color);
+}
+.leftNav {
+}
+.rightNav {
+  display: flex;
+  gap: 1em;
+}
+.navLinks {
+  transition: all 0.3s ease-in-out;
+}
+.navLinks:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--text-decoration-color);
+  text-decoration-thickness: 2px;
+  transform: scale(1.05);
+  color: var(--links-color);
+}
