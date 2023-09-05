@@ -1,7 +1,5 @@
-import styles from './Login.module.css'
+import styles from "./Login.module.css";
 
 export const Login = () => {
-  return (
-    <h1>login</h1>
-  )
-}
+  return <h1>login</h1>;
+};
