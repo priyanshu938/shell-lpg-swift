@@ -1,0 +1,14 @@
+.profilePic {
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+  object-fit: fill;
+}
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 20%;
+  height: 10em;
+}

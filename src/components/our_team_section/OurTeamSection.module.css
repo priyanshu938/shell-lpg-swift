@@ -1,0 +1,9 @@
+.headline {
+  text-align: center;
+}
+.teamCardContainer {
+  display: flex;
+  margin: 3em 10em;
+  gap: 2.5em;
+  margin-bottom: 5em;
+}
