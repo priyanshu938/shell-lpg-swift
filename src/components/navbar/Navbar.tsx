@@ -11,7 +11,11 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.leftNav}>
         <Link to="/">
-          <img src="/public/logo.png" alt="" className={styles.logo} />
+          <img
+            src="https://th.bing.com/th?id=OIP.OhJ97mGtZzm852nJOhga5gHaGP&w=272&h=229&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"
+            alt=""
+            className={styles.logo}
+          />
         </Link>
       </div>
       <div className={styles.rightNav}>

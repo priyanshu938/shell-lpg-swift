@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  padding: 5em;
+}
+.leftSide {
+  flex-basis: 40%;
+}
+.rightSide {
+  flex-basis: 60%;
+}

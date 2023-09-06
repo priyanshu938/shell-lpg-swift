@@ -17,6 +17,7 @@
   --box-shadow-color: rgb(131, 128, 128);
   --text-decoration-color: rgb(190, 32, 32);
   --links-color: rgb(235, 139, 21);
+  --footer-background-color: rgb(172, 162, 162);
 }
 a {
   color: var(--black-color);
