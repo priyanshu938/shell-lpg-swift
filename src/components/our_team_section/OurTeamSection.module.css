@@ -1,5 +1,6 @@
 .headline {
   text-align: center;
+  text-transform: uppercase;
 }
 .teamCardContainer {
   display: flex;
