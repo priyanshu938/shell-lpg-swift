@@ -20,3 +20,22 @@
   justify-content: end;
   gap: 1em;
 }
+.socialIcons {
+  transition: all 0.3s ease-in-out;
+}
+.socialIcons:hover {
+  transform: scale(1.4);
+}
+
+.twitterIcon:hover {
+  color: rgb(82, 146, 150);
+}
+.instagramIcon:hover {
+  color: rgb(255, 73, 73);
+}
+.facebookIcon:hover {
+  color: rgb(24, 113, 238);
+}
+.linkedInIcon:hover {
+  color: rgb(52, 127, 226);
+}

@@ -15,16 +15,28 @@ const Footer = () => {
         </div>
         <div className={styles.rightSide}>
           <div className={styles.socialIconsContainer}>
-            <Link to="">
+            <Link
+              to=""
+              className={[styles.socialIcons, styles.twitterIcon].join(" ")}
+            >
               <TwitterIcon />
             </Link>
-            <Link to="">
+            <Link
+              to=""
+              className={[styles.socialIcons, styles.instagramIcon].join(" ")}
+            >
               <InstagramIcon />
             </Link>
-            <Link to="">
+            <Link
+              to=""
+              className={[styles.socialIcons, styles.facebookIcon].join(" ")}
+            >
               <FacebookIcon />
             </Link>
-            <Link to="">
+            <Link
+              to=""
+              className={[styles.socialIcons, styles.linkedInIcon].join(" ")}
+            >
               <LinkedInIcon />
             </Link>
           </div>
