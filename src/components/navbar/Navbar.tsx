@@ -10,17 +10,16 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.leftNav}>
-        <Link to="/">Logo</Link>
+        <Link to="/">
+          <img src="/public/logo.png" alt="" className={styles.logo} />
+        </Link>
       </div>
       <div className={styles.rightNav}>
-        <Link to="/" className={styles.navLinks}>
+        <Link to="/login" className={styles.navLinks}>
           Login
         </Link>
         <Link to="/signup" className={styles.navLinks}>
           Signup
-        </Link>
-        <Link to="/about" className={styles.navLinks}>
-          About Us
         </Link>
         <Link to="/contact" className={styles.navLinks}>
           Contact Us
