@@ -33,7 +33,7 @@ const Navbar = () => {
           Our Products
         </Link>
         <Link to="/cart" className={styles.navLinks}>
-          <Badge badgeContent={cartItems} color="primary">
+          <Badge badgeContent={cartItems.length} color="primary">
             <ShoppingCartIcon onClick={() => navigate("/cart")} />
           </Badge>
         </Link>

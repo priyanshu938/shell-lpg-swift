@@ -60,7 +60,7 @@ const SingleProduct = () => {
   );
 
   const handleAddToCart = (id: number) => {
-    setCartItems(cartItems + 1);
+    setCartItems([...cartItems, singleProductData]);
   };
   return (
     <>
