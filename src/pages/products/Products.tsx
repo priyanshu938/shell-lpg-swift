@@ -104,9 +104,13 @@ const Products = () => {
         />
       </div>
       <div className={styles.productsContainer}>
-        {filterProducts?.map((product) => {
-          return <Product key={product.id} {...product} />;
-        })}
+        {filterProducts.length > 0 ? (
+          filterProducts?.map((product) => {
+            return <Product key={product.id} {...product} />;
+          })
+        ) : (
+          <h1>Oops! No Products Found!</h1>
+        )}
       </div>
     </>
   );
