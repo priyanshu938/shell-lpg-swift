@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -7,6 +7,7 @@ import { CartContext } from "../../contexts/CartContext";
 
 const Navbar = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
+  const navigate = useNavigate();
   return (
     <nav className={styles.navbar}>
       <div className={styles.leftNav}>
@@ -33,7 +34,7 @@ const Navbar = () => {
         </Link>
         <Link to="/cart" className={styles.navLinks}>
           <Badge badgeContent={cartItems} color="primary">
-            <ShoppingCartIcon onClick={() => setCartItems(cartItems + 1)} />
+            <ShoppingCartIcon onClick={() => navigate("/cart")} />
           </Badge>
         </Link>
       </div>
