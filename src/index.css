@@ -26,8 +26,12 @@ a {
 
 input {
   border: none;
-  border-bottom: 2px solid var(--black-color);
+  background: transparent;
 }
 input:focus {
   outline: none;
+}
+
+.container {
+  margin-inline: 2em;
 }
