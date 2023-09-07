@@ -11,3 +11,10 @@
 .inputSearch {
   flex-basis: 90%;
 }
+.productsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2em 5em;
+  gap: 5em;
+}

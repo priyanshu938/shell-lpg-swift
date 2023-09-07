@@ -1,0 +1,21 @@
+.productContainer {
+  display: flex;
+  height: auto;
+  width: 80vw;
+  box-shadow: 2px 2px 10px var(--box-shadow-color);
+  border-radius: 1em;
+}
+.productImage {
+  flex-basis: 20%;
+}
+.productImage img {
+  height: 15em;
+  object-fit: fill;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+}
+.content {
+  flex-basis: 70%;
+  padding-inline: 2em;
+  padding-top: 1em;
+}
