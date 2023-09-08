@@ -1,9 +1,18 @@
 import React, { useContext } from "react";
 import styles from "./Cart.module.css";
 import { CartContext } from "../../contexts/CartContext";
+import Button from "@mui/material/Button";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 
 const Cart = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
+
+  //delete cart item from the cart
+  const deleteItem = (id: number) => {
+    const newCartItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(newCartItems);
+  };
+
   return (
     <>
       {cartItems.length > 0 ? (
@@ -17,6 +26,13 @@ const Cart = () => {
                   <h3>{item.name}</h3>
                   <p>{item.description}</p>
                   <p>₹{item.price}</p>
+                  <Button
+                    variant="contained"
+                    endIcon={<RemoveShoppingCartIcon />}
+                    onClick={() => deleteItem(item.id)}
+                  >
+                    Remove from Cart
+                  </Button>
                 </div>
               </div>
             ))}
