@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -60,8 +60,16 @@ const SingleProduct = () => {
   );
 
   const handleAddToCart = (id: number) => {
+    //do not add the product if it is already in the cart
+    if (cartItems.find((item) => item.id === id)) {
+      return;
+    }
     setCartItems([...cartItems, singleProductData]);
   };
+  useEffect(() => {
+    console.log(cartItems);
+  }, []);
+
   return (
     <>
       <div className={styles.cardContainer}>

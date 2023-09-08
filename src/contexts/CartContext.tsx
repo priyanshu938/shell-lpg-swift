@@ -1,8 +1,16 @@
-import { FC, ReactNode, createContext, useState } from "react";
+import {
+  FC,
+  ReactNode,
+  createContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 interface ICartProviderProps {
   children: ReactNode;
 }
+
 interface ICartItems {
   id: number;
   image: string;
@@ -12,14 +20,16 @@ interface ICartItems {
   rating: number;
 }
 
-//fix create cart items bugs
-export const CartContext = createContext({
+export const CartContext = createContext<{
+  cartItems: ICartItems[];
+  setCartItems: Dispatch<SetStateAction<ICartItems[]>>;
+}>({
   cartItems: [],
-  setCartItems: (cartItems: ICartItems[]) => {},
+  setCartItems: () => {},
 });
 
 const CartContextProvider: FC<ICartProviderProps> = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<ICartItems[]>([]);
 
   return (
     <CartContext.Provider value={{ cartItems, setCartItems }}>
