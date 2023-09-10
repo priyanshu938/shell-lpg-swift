@@ -13,6 +13,18 @@ const Login = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    if (password.length < 6) {
+      alert("Password must be atleast 6 characters");
+      return;
+    }
+    //password must contain atleast one uppercase, one lowercase, one number and one special character
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    if (!regex.test(password)) {
+      alert(
+        "Password must contain atleast one uppercase, one lowercase, one number and one special character"
+      );
+      return;
+    }
 
     setEmail("");
     setPassword("");

@@ -1,175 +1,162 @@
-import { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import {
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import React, { useState } from "react";
+import styles from "./Signup.module.css";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import EmailIcon from "@mui/icons-material/Email";
+import HomeIcon from "@mui/icons-material/Home";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import LockIcon from "@mui/icons-material/Lock";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Link } from "react-router-dom";
 
-export default function SignUp() {
+const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleClickShowPassword = () =>
-    setShowPassword((show: boolean) => !show);
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (name.length < 6) {
+      alert("Name must be atleast 6 characters");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("Password and Confirm Password must be same");
+      return;
+    }
+    if (password.length < 6) {
+      alert("Password must be atleast 6 characters");
+      return;
+    }
+    //password must contain atleast one uppercase, one lowercase, one number and one special character
+    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    if (!regex.test(password)) {
+      alert(
+        "Password must contain atleast one uppercase, one lowercase, one number and one special character"
+      );
+      return;
+    }
+
+    setName("");
+    setEmail("");
+    setPhone("");
+    setAddress("");
+    setPassword("");
+    setConfirmPassword("");
+    console.log(name, email, address, phone, password, confirmPassword);
   };
-
-  const handleClickShowConfirmPassword = () =>
-    setShowConfirmPassword((show: boolean) => !show);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    //write validation code here
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      confirmPassword: data.get("confirmPassword"),
-    });
-  };
-
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 1,
-          marginBottom: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="given-name"
-                name="firstName"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="family-name"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined" required>
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  sx={{ width: "25em" }}
-                  name="password"
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Password"
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined" required>
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Confirm Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showConfirmPassword ? "text" : "password"}
-                  sx={{ width: "25em" }}
-                  required
-                  name="confirmPassword"
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowConfirmPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showConfirmPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label=" Confirm Password"
-                />
-              </FormControl>
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-    </Container>
+    <>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h1 className={styles.heading}>🔏Signup🔏</h1>
+        <div className={styles.inputContainer}>
+          <AccountCircleIcon className={styles.icon} />
+          <input
+            type="text"
+            placeholder="Enter your full name..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <EmailIcon className={styles.icon} />
+          <input
+            type="email"
+            placeholder="Enter email..."
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <LocalPhoneIcon className={styles.icon} />
+          <input
+            type="tel"
+            pattern="[0-9]{10,11}"
+            placeholder="Enter phone number..."
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <HomeIcon className={styles.icon} />
+          <input
+            type="text"
+            placeholder="Enter your address..."
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <LockIcon className={styles.icon} />
+          <input
+            type={!showPassword ? "password" : "text"}
+            placeholder="Enter password..."
+            className={styles.passwordInput}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          {!showPassword ? (
+            <VisibilityIcon
+              className={styles.icon}
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          ) : (
+            <VisibilityOffIcon
+              className={styles.icon}
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          )}
+        </div>
+        <div className={styles.inputContainer}>
+          <LockIcon className={styles.icon} />
+          <input
+            type={!showConfirmPassword ? "password" : "text"}
+            placeholder="Enter confirm password..."
+            className={styles.passwordInput}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+
+          {!showConfirmPassword ? (
+            <VisibilityIcon
+              className={styles.icon}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            />
+          ) : (
+            <VisibilityOffIcon
+              className={styles.icon}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            />
+          )}
+        </div>
+
+        <div className={styles.loginAndRegisterContainer}>
+          <button className={styles.loginButton} type="submit">
+            Signup
+          </button>
+          <div>
+            <Link to="/login" className={styles.registerText}>
+              Already have an account? Login
+              {/* <span className={styles.registerLink}> */}
+              {/* </span> */}
+            </Link>
+          </div>
+        </div>
+      </form>
+    </>
   );
-}
+};
+
+export default Signup;
