@@ -9,25 +9,38 @@ import ContactUs from "./pages/contactUs/ContactUs";
 import Cart from "./pages/cart/Cart";
 import Footer from "./components/footer/Footer";
 import SingleProduct from "./pages/single_product/SingleProduct";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#e9b142",
+      },
+      secondary: {
+        main: "#e9b142",
+      },
+    },
+  });
   return (
     <>
-      <BrowserRouter>
-        <CartContext>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:id" element={<SingleProduct />} />
-          </Routes>
-          <Footer />
-        </CartContext>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <CartContext>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<SingleProduct />} />
+            </Routes>
+            <Footer />
+          </CartContext>
+        </BrowserRouter>
+      </ThemeProvider>
     </>
   );
 }
