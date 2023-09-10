@@ -24,8 +24,11 @@ const Cart = () => {
                 <img src={item.image} alt={item.name} />
                 <div className={styles.cartItemInfo}>
                   <h3>{item.name}</h3>
-                  <p>{item.description}</p>
-                  <p>₹{item.price}</p>
+                  <p className={styles.cartItemDescription}>
+                    {item.description}
+                  </p>
+                  <p>Price: ₹{item.price}</p>
+                  <p>Quantity: {item.quantity}</p>
                   <Button
                     variant="contained"
                     endIcon={<RemoveShoppingCartIcon />}
@@ -39,8 +42,14 @@ const Cart = () => {
           </div>
           <div className={styles.cartRight}>
             <h2>Subtotal</h2>
-            <p>Subtotal (0 items): ₹0</p>
-            <button>Proceed to Checkout</button>
+            <p>
+              Subtotal ({cartItems.length} items): ₹
+              {cartItems.reduce(
+                (acc, item) => acc + item.price * item.quantity,
+                0
+              )}
+            </p>
+            <Button variant="contained">Proceed to checkout</Button>
           </div>
         </div>
       ) : (

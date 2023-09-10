@@ -96,7 +96,7 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControl variant="outlined">
+              <FormControl variant="outlined" required>
                 <InputLabel htmlFor="outlined-adornment-password">
                   Password
                 </InputLabel>
@@ -104,6 +104,7 @@ export default function SignUp() {
                   id="outlined-adornment-password"
                   type={showPassword ? "text" : "password"}
                   sx={{ width: "25em" }}
+                  name="password"
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -121,7 +122,7 @@ export default function SignUp() {
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <FormControl variant="outlined">
+              <FormControl variant="outlined" required>
                 <InputLabel htmlFor="outlined-adornment-password">
                   Confirm Password
                 </InputLabel>
@@ -130,6 +131,7 @@ export default function SignUp() {
                   type={showConfirmPassword ? "text" : "password"}
                   sx={{ width: "25em" }}
                   required
+                  name="confirmPassword"
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
