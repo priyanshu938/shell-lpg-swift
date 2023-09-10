@@ -1,87 +1,77 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import React, { useState } from "react";
+import styles from "./Login.module.css";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Link } from "react-router-dom";
 
-export default function Login() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    setEmail("");
+    setPassword("");
+    console.log(email, password);
   };
-
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
+    <>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h1 className={styles.heading}>🔏Login🔏</h1>
+        <div className={styles.inputContainer}>
+          <EmailIcon className={styles.icon} />
+          <input
             type="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
+            placeholder="Enter email..."
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
           />
+        </div>
+        <div className={styles.inputAndErrorContainer}>
+          <div className={styles.inputContainer}>
+            <LockIcon className={styles.icon} />
+            <input
+              type={!showPassword ? "password" : "text"}
+              placeholder="Enter password..."
+              className={styles.passwordInput}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2">
-                  Forgot password?
-                </Link> */}
-            </Grid>
-            <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-    </Container>
+            {!showPassword ? (
+              <VisibilityIcon
+                className={styles.icon}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            ) : (
+              <VisibilityOffIcon
+                className={styles.icon}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            )}
+          </div>
+        </div>
+        <div className={styles.loginAndRegisterContainer}>
+          <button className={styles.loginButton} type="submit">
+            Login
+          </button>
+          <div>
+            <Link to="/signup" className={styles.registerText}>
+              Don't have an account? Register
+              {/* <span className={styles.registerLink}> */}
+              {/* </span> */}
+            </Link>
+          </div>
+        </div>
+      </form>
+    </>
   );
-}
+};
+
+export default Login;
