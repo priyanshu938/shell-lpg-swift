@@ -6,10 +6,10 @@ const OurTeamSection = () => {
   const teamMembers = [
     {
       id: 1,
-      memberName: "Atishi Jain",
+      memberName: "Priyanshu Tiwari",
       profilePic:
-        "https://github.com/atishij/pictures/blob/main/Atishi.jpg?raw=true",
-      designation: "Product Manager",
+        "https://github.com/atishij/pictures/blob/main/Priyanshu.jpg?raw=true",
+      designation: "Project Lead",
     },
     {
       id: 2,
@@ -26,11 +26,11 @@ const OurTeamSection = () => {
       designation: "UI/UX Developer",
     },
     {
-      id: 4,
-      memberName: "Priyanshu Tiwari",
+      id: 2,
+      memberName: "Atishi Jain",
       profilePic:
-        "https://github.com/atishij/pictures/blob/main/Priyanshu.jpg?raw=true",
-      designation: "Team Lead",
+        "https://github.com/atishij/pictures/blob/main/Atishi.jpg?raw=true",
+      designation: "Product Manager",
     },
     {
       id: 5,

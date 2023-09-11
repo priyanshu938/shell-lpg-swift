@@ -9,15 +9,20 @@ const FirstSection = () => {
           <img src="/public/logo.png" alt="" />
         </div>
         <div className={styles.rightSide}>
-          <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+          <h1>Start your SHELL-LPG journey today!</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            laudantium cupiditate eius molestias suscipit, voluptate vero vitae
-            accusantium vel nihil eligendi. Dolor quis alias eum aliquam
-            repellendus commodi, ullam fuga! Aspernatur harum culpa cupiditate
-            animi quo eaque. Sunt, laboriosam qui neque iusto aperiam animi.
-            Dicta modi rem rerum aut nihil quod culpa, excepturi voluptas saepe
-            quos, mollitia sint placeat ipsam.
+            At SHELL, we understand the importance of convenience and safety
+            when it comes to accessing LPG cylinders for your everyday needs. We
+            are proud to introduce our seamless and user-friendly online
+            cylinder booking system - SHELL-LPG. This innovative platform has
+            been designed with you in mind, to simplify the process of ordering
+            LPG cylinders and ensure that you have a hassle-free experience.
+            Experience the future of LPG cylinder booking with SHELL-LPG. Say
+            goodbye to the hassles of traditional booking methods and embrace
+            the simplicity, convenience, and safety that our platform offers.
+            Join us in our mission to make LPG cylinder booking easier, safer,
+            and more efficient than ever before. Let's make your life better,
+            one cylinder at a time.
           </p>
         </div>
       </div>

@@ -93,13 +93,14 @@ const SingleProduct = () => {
                 setSingleProductData((prev) => {
                   return {
                     ...prev,
-                    quantity: prev.quantity + 1,
+                    quantity: prev.quantity === 1 ? 1 : prev.quantity - 1,
                   };
                 });
               }}
             >
-              +
+              -
             </div>
+
             <div className={styles.quantityNumber}>
               {singleProductData.quantity}
             </div>
@@ -109,12 +110,12 @@ const SingleProduct = () => {
                 setSingleProductData((prev) => {
                   return {
                     ...prev,
-                    quantity: prev.quantity === 1 ? 1 : prev.quantity - 1,
+                    quantity: prev.quantity + 1,
                   };
                 });
               }}
             >
-              -
+              +
             </div>
           </div>
 

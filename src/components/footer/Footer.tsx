@@ -11,7 +11,7 @@ const Footer = () => {
     <>
       <div className={styles.container}>
         <div className={styles.leftSide}>
-          &copy; {new Date().getFullYear()} Shell LPG. All rights reserved.
+          &copy; {new Date().getFullYear()} Shell-LPG. All rights reserved.
         </div>
         <div className={styles.rightSide}>
           <div className={styles.socialIconsContainer}>
