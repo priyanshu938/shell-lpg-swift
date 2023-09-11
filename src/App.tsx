@@ -10,8 +10,11 @@ import Cart from "./pages/cart/Cart";
 import Footer from "./components/footer/Footer";
 import SingleProduct from "./pages/single_product/SingleProduct";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Notification from "./utils/Notification";
+import { useState } from "react";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(true);
   const theme = createTheme({
     palette: {
       primary: {
@@ -24,6 +27,12 @@ function App() {
   });
   return (
     <>
+      <Notification
+        severity="success"
+        message="This is a success message!"
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <CartContext>
