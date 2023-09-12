@@ -4,10 +4,12 @@ import { CartContext } from "../../contexts/CartContext";
 import Button from "@mui/material/Button";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import { NotificationContext } from "../../contexts/NotificationContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
   const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
+  const navigate = useNavigate();
 
   //delete cart item from the cart
   const deleteItem = (id: number) => {
@@ -54,7 +56,9 @@ const Cart = () => {
                 0
               )}
             </p>
-            <Button variant="contained">Proceed to checkout</Button>
+            <Button variant="contained" onClick={() => navigate("/checkout")}>
+              Proceed to checkout
+            </Button>
           </div>
         </div>
       ) : (
