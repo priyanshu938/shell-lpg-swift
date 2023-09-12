@@ -47,10 +47,11 @@ const Navbar = () => {
           </Link>
           {/* <AvatarComponent name={"Bagge"} /> */}
           <Avatar
-            name="Billo Bagge"
+            name="Dr Billo Bagge"
             size="40"
             round={true}
-            textSizeRatio={0.8}
+            maxInitials={2}
+            style={{ cursor: "pointer" }}
           />
           <Button variant="contained" onClick={() => navigate("/login")}>
             Login
