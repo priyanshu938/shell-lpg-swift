@@ -7,6 +7,8 @@ import { CartContext } from "../../contexts/CartContext";
 import Notification from "../../utils/Notification";
 import { NotificationContext } from "../../contexts/NotificationContext";
 import Button from "@mui/material/Button";
+import AvatarComponent from "../../utils/AvatarComponent";
+import Avatar from "react-avatar";
 
 const Navbar = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
@@ -43,6 +45,13 @@ const Navbar = () => {
               <ShoppingCartIcon onClick={() => navigate("/cart")} />
             </Badge>
           </Link>
+          {/* <AvatarComponent name={"Bagge"} /> */}
+          <Avatar
+            name="Billo Bagge"
+            size="40"
+            round={true}
+            textSizeRatio={0.8}
+          />
           <Button variant="contained" onClick={() => navigate("/login")}>
             Login
           </Button>
