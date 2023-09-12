@@ -22,7 +22,7 @@ const Login = () => {
       return;
     }
     //password must contain atleast one uppercase, one lowercase, one number and one special character
-    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
     if (!regex.test(password)) {
       setOpen(true);
       setMessage(

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Signup.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import EmailIcon from "@mui/icons-material/Email";
@@ -8,6 +8,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router-dom";
+import { NotificationContext } from "../../contexts/NotificationContext";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -18,27 +19,36 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (name.length < 6) {
-      alert("Name must be atleast 6 characters");
-      return;
-    }
-    if (password !== confirmPassword) {
-      alert("Password and Confirm Password must be same");
+      setOpen(true);
+      setMessage("Name must be atleast 6 characters");
+      setSeverity("error");
       return;
     }
     if (password.length < 6) {
-      alert("Password must be atleast 6 characters");
+      setOpen(true);
+      setMessage("Password must be atleast 6 characters");
+      setSeverity("error");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setOpen(true);
+      setMessage("Password and Confirm Password must be same");
+      setSeverity("error");
       return;
     }
     //password must contain atleast one uppercase, one lowercase, one number and one special character
-    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
     if (!regex.test(password)) {
-      alert(
-        "Password must contain atleast one uppercase, one lowercase, one number and one special character"
+      setOpen(true);
+      setMessage(
+        "Password must contain at least one uppercase, one lowercase, one number, and one special character"
       );
+      setSeverity("error");
       return;
     }
 
