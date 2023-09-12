@@ -36,7 +36,6 @@ export default function ContactUs() {
           maxWidth: 600,
           mx: "auto",
           p: 2,
-          // border: "2px solid gray ",
           borderRadius: "0.5em",
           boxShadow: "0 0 10px  #838080",
         }}

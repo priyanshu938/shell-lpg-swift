@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import Notification from "../../utils/Notification";
 import { NotificationContext } from "../../contexts/NotificationContext";
+import Button from "@mui/material/Button";
 
 const Navbar = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
@@ -31,12 +32,6 @@ const Navbar = () => {
           </Link>
         </div>
         <div className={styles.rightNav}>
-          <Link to="/login" className={styles.navLinks}>
-            Login
-          </Link>
-          <Link to="/signup" className={styles.navLinks}>
-            Signup
-          </Link>
           <Link to="/contact" className={styles.navLinks}>
             Contact Us
           </Link>
@@ -48,6 +43,12 @@ const Navbar = () => {
               <ShoppingCartIcon onClick={() => navigate("/cart")} />
             </Badge>
           </Link>
+          <Button variant="contained" onClick={() => navigate("/login")}>
+            Login
+          </Button>
+          <Button variant="contained" onClick={() => navigate("/signup")}>
+            Signup
+          </Button>
         </div>
       </nav>
     </>
