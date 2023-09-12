@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
+import { NotificationContext } from "../../contexts/NotificationContext";
+import { CartContext } from "../../contexts/CartContext";
 
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
@@ -31,9 +33,19 @@ function getStepContent(step: number) {
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const { cartItems, setCartItems } = React.useContext(CartContext);
+  const { setSeverity, setMessage, setOpen } =
+    React.useContext(NotificationContext);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    if (activeStep === steps.length - 1) {
+      setOpen(true);
+      setMessage("Order Placed Successfully");
+      setSeverity("success");
+      //empty cart over here
+      setCartItems([]);
+    }
   };
 
   const handleBack = () => {
@@ -72,11 +84,11 @@ export default function Checkout() {
               <Typography variant="h5" gutterBottom>
                 Thank you for your order.
               </Typography>
-              <Typography variant="subtitle1">
+              {/* <Typography variant="subtitle1">
                 Your order number is #2001539. We have emailed your order
                 confirmation, and will send you an update when your order has
                 shipped.
-              </Typography>
+              </Typography> */}
             </React.Fragment>
           ) : (
             <React.Fragment>

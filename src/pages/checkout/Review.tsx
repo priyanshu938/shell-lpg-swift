@@ -7,6 +7,7 @@ import { CartContext } from "../../contexts/CartContext";
 
 export default function Review() {
   const { cartItems } = useContext(CartContext);
+
   const products = [
     {
       name: "Product 1",
@@ -44,16 +45,21 @@ export default function Review() {
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
+        {cartItems?.map((product) => (
           <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+            <ListItemText
+              primary={product.name}
+              secondary={`Quantity : ${product.quantity}`}
+            />
+            <Typography variant="body2">
+              Rs {product.price * product.quantity}
+            </Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            Rs {cartItems?.reduce((a, b) => a + b.price * b.quantity, 0)}
           </Typography>
         </ListItem>
       </List>
