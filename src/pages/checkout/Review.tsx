@@ -1,11 +1,12 @@
-import * as React from "react";
+import { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import Grid from "@mui/material/Grid";
+import { CartContext } from "../../contexts/CartContext";
 
 export default function Review() {
+  const { cartItems } = useContext(CartContext);
   const products = [
     {
       name: "Product 1",
