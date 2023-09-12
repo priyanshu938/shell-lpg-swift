@@ -1,8 +1,93 @@
-import React from "react";
-import styles from "./ContactUs.module.css";
+import { useContext, useState } from "react";
+import { TextField, Button, Typography, Box } from "@mui/material";
+import { NotificationContext } from "../../contexts/NotificationContext";
 
-const ContactUs = () => {
-  return <div>ContactUs</div>;
-};
+export default function ContactUs() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+  const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
 
-export default ContactUs;
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log(name, email, contactMessage);
+    setSeverity("success");
+    setMessage("Message sent successfully");
+    setOpen(true);
+    setName("");
+    setEmail("");
+    setContactMessage("");
+  };
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "80vh",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          maxWidth: 600,
+          mx: "auto",
+          p: 2,
+          // border: "2px solid gray ",
+          borderRadius: "0.5em",
+          boxShadow: "0 0 10px  #838080",
+        }}
+      >
+        <Typography variant="h4" align="center" mb={2}>
+          Contact Us
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            label="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            margin="normal"
+            required
+          />
+          <TextField
+            fullWidth
+            label="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            margin="normal"
+            required
+            type="email"
+          />
+          <TextField
+            fullWidth
+            label="Message"
+            value={contactMessage}
+            onChange={(e) => setContactMessage(e.target.value)}
+            margin="normal"
+            required
+            multiline
+            rows={4}
+          />
+          <Button
+            fullWidth
+            type="submit"
+            sx={{
+              mt: 2,
+              backgroundColor: "#e9b142",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#e6bb4f",
+              },
+            }}
+          >
+            Submit
+          </Button>
+        </form>
+      </Box>
+    </Box>
+  );
+}
