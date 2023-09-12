@@ -12,6 +12,7 @@ import SingleProduct from "./pages/single_product/SingleProduct";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import NotificationContextProvider from "./contexts/NotificationContext";
 import Checkout from "./pages/checkout/Checkout";
+import PageNotFound from "./utils/PageNotFound";
 
 function App() {
   const theme = createTheme({
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<SingleProduct />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="*" element={<PageNotFound />} />
               </Routes>
               <Footer />
             </CartContextProvider>
