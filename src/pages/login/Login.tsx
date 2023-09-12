@@ -1,28 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Login.module.css";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Link } from "react-router-dom";
+import { NotificationContext } from "../../contexts/NotificationContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (password.length < 6) {
-      alert("Password must be atleast 6 characters");
+      setOpen(true);
+      setMessage("Password must be atleast 6 characters");
+      setSeverity("error");
       return;
     }
     //password must contain atleast one uppercase, one lowercase, one number and one special character
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     if (!regex.test(password)) {
-      alert(
+      setOpen(true);
+      setMessage(
         "Password must contain atleast one uppercase, one lowercase, one number and one special character"
       );
+      setSeverity("error");
       return;
     }
 
