@@ -5,9 +5,12 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Button from "@mui/material/Button";
 import styles from "./SingleProduct.module.css";
 import { CartContext } from "../../contexts/CartContext";
+import { NotificationContext } from "../../contexts/NotificationContext";
 
 const SingleProduct = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
+  const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
+
   //remove this after api call line
   type Params = {
     id: string;
@@ -66,9 +69,15 @@ const SingleProduct = () => {
   const handleAddToCart = (id: number) => {
     //do not add the product if it is already in the cart
     if (cartItems.find((item) => item.id === id)) {
+      setOpen(true);
+      setMessage("Item already in cart");
+      setSeverity("error");
       return;
     }
     setCartItems([...cartItems, singleProductData]);
+    setOpen(true);
+    setMessage("Item added to cart");
+    setSeverity("success");
   };
   // useEffect(() => {
   //   console.log(cartItems);

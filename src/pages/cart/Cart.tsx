@@ -3,14 +3,19 @@ import styles from "./Cart.module.css";
 import { CartContext } from "../../contexts/CartContext";
 import Button from "@mui/material/Button";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import { NotificationContext } from "../../contexts/NotificationContext";
 
 const Cart = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
+  const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
 
   //delete cart item from the cart
   const deleteItem = (id: number) => {
     const newCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(newCartItems);
+    setOpen(true);
+    setMessage("Item removed from cart");
+    setSeverity("success");
   };
 
   return (
