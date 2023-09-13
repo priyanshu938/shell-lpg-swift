@@ -34,6 +34,9 @@ const Login = () => {
     }
 
     localStorage.setItem("email", email);
+    setSeverity("success");
+    setMessage("Logged in successfully");
+    setOpen(true);
     setEmail("");
     setPassword("");
     navigate("/");
