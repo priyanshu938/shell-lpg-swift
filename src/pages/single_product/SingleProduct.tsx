@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Button from "@mui/material/Button";
@@ -10,6 +10,7 @@ import { NotificationContext } from "../../contexts/NotificationContext";
 const SingleProduct = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
   const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
+  const navigate = useNavigate();
 
   //remove this after api call line
   type Params = {
@@ -132,7 +133,16 @@ const SingleProduct = () => {
             variant="contained"
             endIcon={<AddShoppingCartIcon />}
             sx={{ mt: 6 }}
-            onClick={() => handleAddToCart(singleProductData.id)}
+            onClick={() => {
+              if (localStorage.getItem("email")) {
+                handleAddToCart(singleProductData.id);
+              } else {
+                navigate("/login");
+                setOpen(true);
+                setMessage("Please login to add items to cart");
+                setSeverity("error");
+              }
+            }}
           >
             Add to Cart
           </Button>

@@ -11,7 +11,8 @@ import Avatar from "react-avatar";
 
 const Navbar = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
-  const { severity, message, open, setOpen } = useContext(NotificationContext);
+  const { severity, setSeverity, setMessage, message, open, setOpen } =
+    useContext(NotificationContext);
   const navigate = useNavigate();
 
   const email = localStorage.getItem("email");
@@ -68,6 +69,10 @@ const Navbar = () => {
                 onClick={() => {
                   localStorage.removeItem("email");
                   navigate("/");
+                  setOpen(true);
+                  setCartItems([]);
+                  setMessage("Logged out successfully");
+                  setSeverity("success");
                 }}
               >
                 Logout
