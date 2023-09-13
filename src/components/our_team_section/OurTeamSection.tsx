@@ -13,31 +13,31 @@ const OurTeamSection = () => {
     },
     {
       id: 2,
-      memberName: "Shivang Dubey",
-      profilePic:
-        "https://github.com/atishij/pictures/blob/main/Shivang.png?raw=true",
-      designation: "Business Analyst",
-    },
-    {
-      id: 3,
       memberName: "Naman Mittal",
       profilePic:
         " https://github.com/atishij/pictures/blob/main/Naman.png?raw=true",
       designation: "UI/UX Developer",
     },
     {
-      id: 2,
+      id: 3,
+      memberName: "Shivang Dubey",
+      profilePic:
+        "https://github.com/atishij/pictures/blob/main/Shivang.png?raw=true",
+      designation: "Backend Developer",
+    },
+    {
+      id: 4,
       memberName: "Atishi Jain",
       profilePic:
         "https://github.com/atishij/pictures/blob/main/Atishi.jpg?raw=true",
-      designation: "Product Manager",
+      designation: "Software Tester",
     },
     {
       id: 5,
       memberName: "Priti Sah",
       profilePic:
         "https://github.com/atishij/pictures/blob/main/Priti.jpg?raw=true",
-      designation: "Human Resources",
+      designation: "API Integrator",
     },
   ];
   return (
