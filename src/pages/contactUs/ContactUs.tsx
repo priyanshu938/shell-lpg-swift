@@ -8,8 +8,19 @@ export default function ContactUs() {
   const [contactMessage, setContactMessage] = useState("");
   const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    try {
+      const res = await fetch("https://formspree.io/f/xyyqpzjy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, contactMessage }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
     console.log(name, email, contactMessage);
     setSeverity("success");
     setMessage("Message sent successfully");
