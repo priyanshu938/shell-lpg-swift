@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import NotificationContextProvider from "./contexts/NotificationContext";
 import Checkout from "./pages/checkout/Checkout";
 import PageNotFound from "./utils/PageNotFound";
+import UserContextProvider from "./contexts/UserContext";
 
 function App() {
   const theme = createTheme({
@@ -29,23 +30,25 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <NotificationContextProvider>
-            <CartContextProvider>
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/contact" element={<ContactUs />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/products/:id" element={<SingleProduct />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="*" element={<PageNotFound />} />
-              </Routes>
-              <Footer />
-            </CartContextProvider>
-          </NotificationContextProvider>
+          <UserContextProvider>
+            <NotificationContextProvider>
+              <CartContextProvider>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/contact" element={<ContactUs />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/products/:id" element={<SingleProduct />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="*" element={<PageNotFound />} />
+                </Routes>
+                <Footer />
+              </CartContextProvider>
+            </NotificationContextProvider>
+          </UserContextProvider>
         </BrowserRouter>
       </ThemeProvider>
     </>

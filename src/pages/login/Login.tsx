@@ -4,7 +4,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NotificationContext } from "../../contexts/NotificationContext";
 
 const Login = () => {
@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -32,9 +33,10 @@ const Login = () => {
       return;
     }
 
+    localStorage.setItem("email", email);
     setEmail("");
     setPassword("");
-    console.log(email, password);
+    navigate("/");
   };
   return (
     <>

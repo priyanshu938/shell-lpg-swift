@@ -7,13 +7,15 @@ import { CartContext } from "../../contexts/CartContext";
 import Notification from "../../utils/Notification";
 import { NotificationContext } from "../../contexts/NotificationContext";
 import Button from "@mui/material/Button";
-import AvatarComponent from "../../utils/AvatarComponent";
 import Avatar from "react-avatar";
 
 const Navbar = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
   const { severity, message, open, setOpen } = useContext(NotificationContext);
   const navigate = useNavigate();
+
+  const email = localStorage.getItem("email");
+
   return (
     <>
       <Notification
@@ -34,31 +36,53 @@ const Navbar = () => {
           </Link>
         </div>
         <div className={styles.rightNav}>
-          <Link to="/contact" className={styles.navLinks}>
-            Contact Us
-          </Link>
           <Link to="/products" className={styles.navLinks}>
             Our Products
           </Link>
-          <Link to="/cart" className={styles.navLinks}>
-            <Badge badgeContent={cartItems.length} color="primary">
-              <ShoppingCartIcon onClick={() => navigate("/cart")} />
-            </Badge>
+          <Link to="/contact" className={styles.navLinks}>
+            Contact Us
           </Link>
-          {/* <AvatarComponent name={"Bagge"} /> */}
-          <Avatar
-            name="Dr Billo Bagge"
-            size="40"
-            round={true}
-            maxInitials={2}
-            style={{ cursor: "pointer" }}
-          />
-          <Button variant="contained" onClick={() => navigate("/login")}>
-            Login
-          </Button>
-          <Button variant="contained" onClick={() => navigate("/signup")}>
-            Signup
-          </Button>
+          {email ? (
+            <>
+              <Link to="/cart" className={styles.navLinks}>
+                <Badge badgeContent={cartItems.length} color="primary">
+                  <ShoppingCartIcon onClick={() => navigate("/cart")} />
+                </Badge>
+              </Link>
+              <Avatar
+                name={window.localStorage.getItem("email") || ""}
+                size="40"
+                round={true}
+                maxInitials={2}
+                style={{ cursor: "pointer" }}
+              />
+              <Button
+                variant="contained"
+                sx={{
+                  color: "white",
+                  backgroundColor: "var(--text-decoration-color)",
+                  "&:hover": {
+                    backgroundColor: "var(--text-decoration-color)",
+                  },
+                }}
+                onClick={() => {
+                  localStorage.removeItem("email");
+                  navigate("/");
+                }}
+              >
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="contained" onClick={() => navigate("/login")}>
+                Login
+              </Button>
+              <Button variant="contained" onClick={() => navigate("/signup")}>
+                Signup
+              </Button>
+            </>
+          )}
         </div>
       </nav>
     </>
