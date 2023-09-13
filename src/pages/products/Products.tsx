@@ -16,7 +16,7 @@ const Products = () => {
     },
     {
       id: 2,
-      image: "https://github.com/atishij/pictures/blob/main/P2.png?raw=true",
+      image: "https://github.com/atishij/pictures/blob/main/P2.jpg?raw=true",
       name: "Mini Gas Cylinder",
       description:
         "The SprayCheck Flamex6 Portable High Pressure Butane Liquefied Gas Canister is a universal nozzle/pin suitable for small stove, blowtorch, lighter refill. It is portable and easy to carry around.",
@@ -54,7 +54,7 @@ const Products = () => {
     },
     {
       id: 2,
-      image: "https://github.com/atishij/pictures/blob/main/P2.png?raw=true",
+      image: "https://github.com/atishij/pictures/blob/main/P2.jpg?raw=true",
       name: "Mini Gas Cylinder",
       description:
         "The SprayCheck Flamex6 Portable High Pressure Butane Liquefied Gas Canister is a universal nozzle/pin suitable for small stove, blowtorch, lighter refill. It is portable and easy to carry around.",
