@@ -21,7 +21,6 @@ export default function ContactUs() {
     } catch (error) {
       console.log(error);
     }
-    console.log(name, email, contactMessage);
     setSeverity("success");
     setMessage("Message sent successfully");
     setOpen(true);
