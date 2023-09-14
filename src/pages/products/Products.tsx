@@ -9,17 +9,37 @@ const Products = () => {
   const [filterProducts, setFilterProducts] = useState([]);
   const [search, setSearch] = useState("");
 
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     const res = await fetch(`${SERVER_URL}/Products`);
+  //     const data = await res.json();
+  //     setProductsArray(data);
+  //   };
+
+  //   if (search === "") {
+  //     getProducts();
+  //     setFilterProducts(productsArray);
+  //     console.log(Date.now());
+  //     return;
+  //   } else {
+  //     const filteredProducts = productsArray.filter((product) => {
+  //       return product.name.toLowerCase().includes(search.toLowerCase());
+  //     });
+  //     setFilterProducts(filteredProducts);
+  //   }
+  // }, [search, productsArray]);
+
   useEffect(() => {
     const getProducts = async () => {
       const res = await fetch(`${SERVER_URL}/Products`);
       const data = await res.json();
       setProductsArray(data);
     };
-
-    if (search === "") {
+  
+    if (search === "" && productsArray.length===0) {
       getProducts();
       setFilterProducts(productsArray);
-      console.log("1");
+      console.log(productsArray);
       return;
     } else {
       const filteredProducts = productsArray.filter((product) => {
@@ -28,6 +48,7 @@ const Products = () => {
       setFilterProducts(filteredProducts);
     }
   }, [search, productsArray]);
+  
 
   return (
     <>
