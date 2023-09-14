@@ -26,7 +26,9 @@ const SingleProduct = () => {
 
   //change this after api call for single product
   const [singleProductData, setSingleProductData] = useState(
-    {}
+    {
+      rating: null,
+    }
   );
 
   const handleAddToCart = (id: number) => {
