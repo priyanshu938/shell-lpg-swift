@@ -9,7 +9,7 @@ interface IProps {
   name: string;
   description: string;
   price: number;
-  rating: number;
+  rating: number | null;
 }
 const Product = ({ id, name, imageUrl, description, price, rating }: IProps) => {
   let navigate = useNavigate();

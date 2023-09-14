@@ -13,12 +13,12 @@ interface ICartProviderProps {
 
 interface ICartItems {
   id: number;
-  image: string;
+  imageUrl: string;
   name: string;
   description: string;
   price: number;
   quantity: number;
-  rating: number;
+  rating: number | null;
 }
 
 export const CartContext = createContext<{

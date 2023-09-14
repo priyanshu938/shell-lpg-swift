@@ -5,8 +5,28 @@ import Product from "./Product";
 import { SERVER_URL } from "../../utils/ServerUrl";
 
 const Products = () => {
-  const [productsArray, setProductsArray] = useState([]);
-  const [filterProducts, setFilterProducts] = useState([]);
+  const [productsArray, setProductsArray] = useState([
+    {
+      id: 0,
+      name: "",
+      description: "",
+      imageUrl: "",
+      price: 0,
+      quantity: 1,
+      rating: null,
+    },
+  ]);
+  const [filterProducts, setFilterProducts] = useState([
+    {
+      id: 0,
+      name: "",
+      description: "",
+      imageUrl: "",
+      price: 0,
+      quantity: 1,
+      rating: null,
+    },
+  ]);
   const [search, setSearch] = useState("");
 
   // useEffect(() => {
@@ -36,7 +56,7 @@ const Products = () => {
       setProductsArray(data);
     };
   
-    if (search === "" && productsArray.length===0) {
+    if (search === "" && productsArray[0].id === 0) {
       getProducts();
       setFilterProducts(productsArray);
       console.log(productsArray);

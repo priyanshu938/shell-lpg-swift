@@ -27,6 +27,12 @@ const SingleProduct = () => {
   //change this after api call for single product
   const [singleProductData, setSingleProductData] = useState(
     {
+      id: 0,
+      name: "",
+      description: "",
+      imageUrl: "",
+      price: 0,
+      quantity: 1,
       rating: null,
     }
   );
