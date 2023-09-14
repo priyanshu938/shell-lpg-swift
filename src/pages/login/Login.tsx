@@ -62,7 +62,7 @@ const Login = () => {
       // }
       // else
       // {
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("email", data.token);
         setSeverity("success");
         setMessage("Logged in successfully");
         setOpen(true);

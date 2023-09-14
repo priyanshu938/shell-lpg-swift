@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 interface IProps {
   id: number;
-  image: string;
+  imageUrl: string;
   name: string;
   description: string;
   price: number;
   rating: number;
 }
-const Product = ({ id, name, image, description, price, rating }: IProps) => {
+const Product = ({ id, name, imageUrl, description, price, rating }: IProps) => {
   let navigate = useNavigate();
   const handleClick = (id: number) => {
     navigate(`/products/${id}`);
@@ -21,7 +21,7 @@ const Product = ({ id, name, image, description, price, rating }: IProps) => {
     <>
       <div className={styles.productContainer} onClick={() => handleClick(id)}>
         <div className={styles.productImage}>
-          <img src={image} alt="" />
+          <img src={imageUrl} alt="" />
         </div>
         <div className={styles.content}>
           <h2>{name}</h2>
