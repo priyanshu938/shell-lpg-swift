@@ -6,6 +6,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Link, useNavigate } from "react-router-dom";
 import { NotificationContext } from "../../contexts/NotificationContext";
+import { SERVER_URL } from "../../utils/ServerUrl";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,32 +15,73 @@ const Login = () => {
   const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit =async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (password.length < 6) {
+    // if (password.length < 6) {
+    //   setOpen(true);
+    //   setMessage("Password must be atleast 6 characters");
+    //   setSeverity("error");
+    //   return;
+    // }
+    // //password must contain atleast one uppercase, one lowercase, one number and one special character
+    // const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
+    // if (!regex.test(password)) {
+    //   setOpen(true);
+    //   setMessage(
+    //     "Password must contain atleast one uppercase, one lowercase, one number and one special character"
+    //   );
+    //   setSeverity("error");
+    //   return;
+    // }
+    try {
+      console.log(JSON.stringify({
+        email,
+        password
+      }));
+      const res=await fetch(`${SERVER_URL}/Users/Login`,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          name:"",
+          id:0,
+          address:"",
+          phone:"",
+          email,
+          password
+        })
+      })
+      const data=await res.json();
+      console.log(data);
+      // if(!data){
+      //   setOpen(true);
+      //   setMessage(data.message);
+      //   setSeverity("error");
+      //   return;
+      // }
+      // else
+      // {
+        localStorage.setItem("token", data.token);
+        setSeverity("success");
+        setMessage("Logged in successfully");
+        setOpen(true);
+        setEmail("");
+        setPassword("");
+        navigate("/");
+      // }
+      
+    } catch (error) {
+      console.log(error);
       setOpen(true);
-      setMessage("Password must be atleast 6 characters");
+      setMessage("Something went wrong");
       setSeverity("error");
       return;
-    }
-    //password must contain atleast one uppercase, one lowercase, one number and one special character
-    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
-    if (!regex.test(password)) {
-      setOpen(true);
-      setMessage(
-        "Password must contain atleast one uppercase, one lowercase, one number and one special character"
-      );
-      setSeverity("error");
-      return;
+
+      
     }
 
-    localStorage.setItem("email", email);
-    setSeverity("success");
-    setMessage("Logged in successfully");
-    setOpen(true);
-    setEmail("");
-    setPassword("");
-    navigate("/");
+  
   };
   return (
     <>
