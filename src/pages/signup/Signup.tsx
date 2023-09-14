@@ -7,8 +7,9 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import LockIcon from "@mui/icons-material/Lock";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NotificationContext } from "../../contexts/NotificationContext";
+import { SERVER_URL } from "../../utils/ServerUrl";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -20,8 +21,10 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { setSeverity, setMessage, setOpen } = useContext(NotificationContext);
+  const navigate=useNavigate();
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+
+  const handleSubmit = async(e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (name.length < 6) {
       setOpen(true);
@@ -58,6 +61,28 @@ const Signup = () => {
     setAddress("");
     setPassword("");
     setConfirmPassword("");
+    try {
+      const res=await fetch(`${SERVER_URL}/Users/Register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, phone, address, password }),
+      });
+      const data=await res.json();
+      if(data){
+        setOpen(true);
+        setMessage("Signup successful");
+        setSeverity("success");
+        navigate("/login");
+      }
+      
+    } catch (error) {
+      setOpen(true);
+      setMessage("Signup failed");
+      setSeverity("error");
+      
+    }
     console.log(name, email, address, phone, password, confirmPassword);
   };
   return (
