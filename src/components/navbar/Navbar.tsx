@@ -45,6 +45,9 @@ const Navbar = () => {
           </Link>
           {email ? (
             <>
+              <Link to="/orders" className={styles.navLinks}>
+                My Orders
+              </Link>
               <Link to="/cart" className={styles.navLinks}>
                 <Badge badgeContent={cartItems.length} color="primary">
                   <ShoppingCartIcon onClick={() => navigate("/cart")} />

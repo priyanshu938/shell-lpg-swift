@@ -14,6 +14,7 @@ import NotificationContextProvider from "./contexts/NotificationContext";
 import Checkout from "./pages/checkout/Checkout";
 import PageNotFound from "./utils/PageNotFound";
 import UserContextProvider from "./contexts/UserContext";
+import MyOrders from "./pages/my_orders/MyOrders";
 
 function App() {
   const theme = createTheme({
@@ -43,6 +44,7 @@ function App() {
                   <Route path="/products" element={<Products />} />
                   <Route path="/products/:id" element={<SingleProduct />} />
                   <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/orders" element={<MyOrders />} />
                   <Route path="*" element={<PageNotFound />} />
                 </Routes>
                 <Footer />

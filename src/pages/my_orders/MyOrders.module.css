@@ -1,0 +1,38 @@
+.tableParent{
+    margin-top: 2em;
+    margin-inline: 8em;
+    border: 2px solid #f2f2f2;
+   
+}
+.tableHeader{
+    display: flex;
+    gap: 10em ;
+    background-color: #f2f2f2;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.tableRow{
+    display: flex;
+    gap: 10em ;
+    padding-block:1em ;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    /* gap: 8em; */
+    /* padding-inline: 3em; */
+}
+.tableRowItem{
+   /* text-align: center; */
+}
+.gray{
+    background-color:rgb(186, 186, 186);
+}
+.heading{
+    text-align: center;
+    padding-top: 1em;
+}
+.orderId{
+    padding-left: 0.5em;
+   text-align: center;
+   align-self: center;
+}
