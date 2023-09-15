@@ -62,6 +62,12 @@ const Login = () => {
       // }
       // else
       // {
+        if(data.token===undefined){
+          setOpen(true);
+          setMessage("Invalid username or password");
+          setSeverity("error");
+          return;
+        }
         localStorage.setItem("email", data.token);
         localStorage.setItem("name", data.userName);
         setSeverity("success");
