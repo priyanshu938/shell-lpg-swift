@@ -55,6 +55,7 @@ const SingleProduct = () => {
       const res = await fetch(`${SERVER_URL}/Products/${id}`);
       const data = await res.json();
       console.log(data)
+      data.quantity=1;
       setSingleProductData(data);
     }
     getData();

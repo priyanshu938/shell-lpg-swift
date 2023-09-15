@@ -15,6 +15,7 @@ import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import { NotificationContext } from "../../contexts/NotificationContext";
 import { CartContext } from "../../contexts/CartContext";
+import { SERVER_URL } from "../../utils/ServerUrl";
 
 const steps = ["Shipping address", "Payment details", "Review your order"];
 
@@ -37,12 +38,38 @@ export default function Checkout() {
   const { setSeverity, setMessage, setOpen } =
     React.useContext(NotificationContext);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     setActiveStep(activeStep + 1);
     if (activeStep === steps.length - 1) {
-      setOpen(true);
-      setMessage("Order Placed Successfully");
-      setSeverity("success");
+      try {
+        //send data to backend
+        //give me product id from cartItems
+        const productIds = cartItems?.map((item) => item.id);
+        const data = {
+          productIds: productIds,
+          totalPrice: cartItems?.reduce((a, b) => a + b.price * b.quantity, 0),
+          // orderdate: utcnow  date
+          orderDate: new Date().toISOString().slice(0, 10),
+        };
+        console.log(data)
+
+        await fetch(`${SERVER_URL}/Orders`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("email"),
+          },
+          body: JSON.stringify(data),
+        });
+        setOpen(true);
+        setMessage("Order Placed Successfully");
+        setSeverity("success");
+      } catch (error) {
+        console.log(error);
+        setSeverity("error");
+        setMessage("Something went wrong");
+        setOpen(true);
+      }
       //empty cart over here
       setCartItems([]);
     }
