@@ -30,7 +30,7 @@ const OurTeamSection = () => {
       memberName: "Atishi Jain",
       profilePic:
         "https://github.com/atishij/pictures/blob/main/Atishi.jpg?raw=true",
-      designation: "Software Tester",
+      designation: "Frontend Developer",
     },
     {
       id: 5,

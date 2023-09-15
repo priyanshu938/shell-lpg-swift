@@ -29,26 +29,6 @@ const Products = () => {
   ]);
   const [search, setSearch] = useState("");
 
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const res = await fetch(`${SERVER_URL}/Products`);
-  //     const data = await res.json();
-  //     setProductsArray(data);
-  //   };
-
-  //   if (search === "") {
-  //     getProducts();
-  //     setFilterProducts(productsArray);
-  //     console.log(Date.now());
-  //     return;
-  //   } else {
-  //     const filteredProducts = productsArray.filter((product) => {
-  //       return product.name.toLowerCase().includes(search.toLowerCase());
-  //     });
-  //     setFilterProducts(filteredProducts);
-  //   }
-  // }, [search, productsArray]);
-
   useEffect(() => {
     const getProducts = async () => {
       const res = await fetch(`${SERVER_URL}/Products`);
