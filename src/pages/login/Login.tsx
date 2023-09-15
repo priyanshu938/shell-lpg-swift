@@ -63,6 +63,7 @@ const Login = () => {
       // else
       // {
         localStorage.setItem("email", data.token);
+        localStorage.setItem("name", data.userName);
         setSeverity("success");
         setMessage("Logged in successfully");
         setOpen(true);

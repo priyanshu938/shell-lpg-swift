@@ -51,7 +51,7 @@ const Navbar = () => {
                 </Badge>
               </Link>
               <Avatar
-                name={window.localStorage.getItem("email") || ""}
+                name={window.localStorage.getItem("name") || ""}
                 size="40"
                 round={true}
                 maxInitials={2}
